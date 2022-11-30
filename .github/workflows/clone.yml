@@ -10,10 +10,10 @@ jobs:
         uses: actions/checkout@v2
       - name: ResolveBranch
         run: |
-          echo "branch=${echo $GITHUB_REF | cut -f 2 -d '@'}" >> $GITHUB_ENV
+          echo $GITHUB_REF | cut -f 2 -d '@'
       - name: Sync Branch
         run: |
           echo ${env.branch}
           git config --global user.name "${GITHUB_ACTOR}"
           git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          git push origin ${env.branch};
+          git push origin hoge;
