@@ -13,7 +13,7 @@ jobs:
           echo $GITHUB_REF | cut -f 2 -d '@' | { read v ;echo -e TARGET="$v"; } >> $GITHUB_ENV;
       - name: Sync Branch
         run: |
-          git remote
+          git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}
           git config --global user.name "${GITHUB_ACTOR}"
           git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
           git push --set-upstream origin ${{env.TARGET}};
