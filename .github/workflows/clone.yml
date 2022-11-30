@@ -11,9 +11,8 @@ jobs:
       - name: ResolveBranch
         run: |
           echo $GITHUB_REF | cut -f 2 -d '@' | { read v ;echo -e TARGET="$v"; } >> $GITHUB_ENV;
-          echo ${{env.TARGET}};
       - name: Sync Branch
         run: |
           git config --global user.name "${GITHUB_ACTOR}"
           git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          git push --set-upstream -f origin ${{env.TARGET}};
+          git push --set-upstream origin ${{env.TARGET}};
