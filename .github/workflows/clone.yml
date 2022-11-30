@@ -16,4 +16,4 @@ jobs:
         run: |
           git config --global user.name "${GITHUB_ACTOR}"
           git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          git push origin -f ${{env.TARGET}};
+          git push --set-upstream -f origin ${{env.TARGET}};
