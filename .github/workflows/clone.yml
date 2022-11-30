@@ -11,6 +11,7 @@ jobs:
       - name: ResolveBranch
         run: |
           echo $GITHUB_REF | cut -f 2 -d '@' | read v ;echo -e "BRANCH=$v" >> $GITHUB_ENV 
+          echo $GITHUB_ENV
       - name: Sync Branch
         run: |
           git config --global user.name "${GITHUB_ACTOR}"
