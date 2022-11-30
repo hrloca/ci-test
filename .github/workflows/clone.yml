@@ -3,17 +3,17 @@ name: Clone
 on: push
 
 jobs:
-  echo:
+  push:
     runs-on: ubuntu-latest
     steps: 
-      - run: |
-          echo '1' $GITHUB_REF
-          echo '2' ${{ github.ref }}
-          echo '3' ${{ github.ref_name }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: ResolveBranch
+        run: |
           echo "branch=${echo $GITHUB_REF | cut -f 2 -d '@'}" >> $GITHUB_ENV
-      - run: |
+      - name: Sync Branch
+        run: |
           echo ${env.branch}
-          git remote set-url origin https://github-actions:${secrets.GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}
           git config --global user.name "${GITHUB_ACTOR}"
           git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          git push origin HEAD:${env.branch}; \
+          git push origin ${env.branch};
